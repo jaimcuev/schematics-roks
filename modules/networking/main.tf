@@ -25,7 +25,7 @@ resource ibm_is_subnet "vpc_subnet" {
   total_ipv4_address_count = 256
   routing_table   = data.ibm_is_vpc_default_routing_table.vpc_routing_table.default_routing_table
   resource_group = data.ibm_resource_group.resource_group.id
-  public_gateway  = ibm_is_public_gateway.publicgateway.id
+  public_gateway  = ibm_is_public_gateway.vpc_gateway.id
   
   timeouts {
     create = "90m"
