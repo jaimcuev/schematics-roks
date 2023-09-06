@@ -18,7 +18,7 @@ resource "ibm_container_vpc_cluster" "cluster" {
   flavor            = var.flavor
   worker_count      = var.worker_count
   entitlement       = var.entitlement_wp
-  resource_group    = data.ibm_resource_group.resource_group.id
+  resource_group_id = data.ibm_resource_group.resource_group.id
   wait_till         = "OneWorkerNodeReady"
   zones {
     subnet_id = var.vpc_subnet_id
