@@ -10,11 +10,14 @@ resource "ibm_resource_instance" "cos_instance" {
   location          = "global"
 }
 
+data "ibm_container_cluster_versions" "cluster_versions" {
+}
+
 resource "ibm_container_vpc_cluster" "cluster" {
   name              = "oc-${var.project}-${var.environment}-001"
   vpc_id            = var.vpc_id
   cos_instance_crn  = ibm_resource_instance.cos_instance.id
-  kube_version      = var.kube_version
+   kube_version     = (var.kube_version != null ? var.kube_version : "${data.ibm_container_cluster_versions.cluster_versions.valid_openshift_versions[local.index]}_openshift")
   flavor            = var.flavor
   worker_count      = var.worker_count
   entitlement       = var.entitlement_wp
