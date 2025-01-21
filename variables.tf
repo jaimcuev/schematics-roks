@@ -31,6 +31,7 @@ variable "zone" {
 variable "kube_version" {
   type = string
   description = "Versión de Kubernetes"
+  default = null
 }
 
 variable "flavor" {
